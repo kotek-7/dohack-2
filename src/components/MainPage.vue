@@ -10,12 +10,10 @@
         種類(こってり？あっさり？)
         <input type="text" />
       </div>
-
       <div>
         サイズ(大・中・小)
         <input type="text" />
       </div>
-
       <div>
         スープの種類
         <input type="text" />
@@ -25,8 +23,4 @@
   </dev>
 </template>
 
-<style scoped>
-  .read-the-docs {
-    color: #888;
-  }
-</style>
+<style scoped></style>

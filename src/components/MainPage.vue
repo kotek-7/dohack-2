@@ -4,6 +4,7 @@
 
 <template>
   <h1>ラーメン美味しいよね</h1>
+  <h2>おいしいね</h2>
   <dev class="main-page-root">
     <form>
       <div>

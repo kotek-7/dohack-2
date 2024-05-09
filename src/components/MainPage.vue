@@ -38,7 +38,7 @@
       今月の🈲ラー
       <div>{{ kinraStreak }}日</div>
     </div>
-    <div>
+    <div class="myclass">
       <div>摂取カロリー{{ calorie }}kcal</div>
       <div>脂質{{ fat }}g</div>
       <div>糖質{{ carb }}g</div>
@@ -61,6 +61,9 @@
 </template>
 
 <style scoped>
+  .class {
+    display: flex;
+  }
   .dialog-overlay {
     width: 100%;
     height: 100%;

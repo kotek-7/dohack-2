@@ -5,9 +5,11 @@ import { setupCalendar, Calendar, DatePicker } from 'v-calendar';
 
 <template>
     <Calendar />
-    <DatePicker />
 
 </template>
 
 <style scoped>
 </style>
+
+
+

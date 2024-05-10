@@ -1,11 +1,9 @@
 <script setup lang="ts">
   import MainPage from "./components/MainPage.vue";
-  import Calendar from "./components/Calendar.vue";
-
 </script>
 
 <template>
-  <Calendar />
+  <MainPage />
 </template>
 
 <style scoped></style>

@@ -1,18 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  DialogRoot,
-  DialogTrigger,
-  DialogPortal,
-  DialogOverlay,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "radix-vue";
-import NewRamen from "./NewRamen.vue";
 import { RawRamenInfo } from "../types";
-import { createRamenInfo } from "../composables/CreateRamenInfo";
-import { addRamenAndSave } from "../composables/AddRamenAndSave";
 import { useRouter } from "vue-router";
 
 const kinraStreak = ref(4);
@@ -20,24 +8,10 @@ const calorie = ref(24000);
 const fat = ref(320);
 const carb = ref(460);
 
-const isOpen = ref(false);
-
 const router = useRouter();
 
 async function createNewHandler() {
   await router.push({ name: "newRamen" });
-}
-
-function submitHandler(rawRamenInfo: RawRamenInfo) {
-  if (rawRamenInfo.ramenType == "") {
-    console.log("ramenType was empty");
-    alert("ラーメンの種類を選択して！");
-    return;
-  }
-  const ramenInfo = createRamenInfo(rawRamenInfo);
-  addRamenAndSave(ramenInfo);
-  alert(ramenInfo);
-  isOpen.value = false;
 }
 </script>
 

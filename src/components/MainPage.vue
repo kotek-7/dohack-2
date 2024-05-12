@@ -15,6 +15,10 @@ const countInMonth = ramenCountInMonth();
 async function createNewHandler() {
   await router.push({ name: "newRamen" });
 }
+
+function historyHandler() {
+  router.push({ name: "history" });
+}
 </script>
 
 <template>
@@ -51,6 +55,19 @@ async function createNewHandler() {
       </div>
       <div class="calendar">Calendar</div>
       <button class="create-button" @click="createNewHandler">記録する</button>
+      <button
+        class="w-12 h-12 rounded-full absolute bottom-12 right-4 bg-white p-2 flex justify-center items-center active:bg-[#eb3031] active:text-white transition"
+        @click="historyHandler"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.6rem" height="1.6rem" viewBox="0 0 15 15">
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M7.5.877a6.623 6.623 0 1 0 0 13.246A6.623 6.623 0 0 0 7.5.877M1.827 7.5a5.673 5.673 0 1 1 11.346 0a5.673 5.673 0 0 1-11.346 0M8 4.5a.5.5 0 0 0-1 0v3a.5.5 0 0 0 .146.354l2 2a.5.5 0 0 0 .708-.708L8 7.293z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
       <div class="spacer" />
     </div>
     <div class="bottom-images">

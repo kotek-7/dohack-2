@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { RamenType, RawRamenInfo, SizeType, ToppingType, ramenTypeArray } from "../types";
 import {
   ListboxContent,
@@ -14,35 +14,44 @@ import { useRouter } from "vue-router";
 import { createRamenInfo } from "../composables/CreateRamenInfo";
 import { addRamenAndSave } from "../composables/AddRamenAndSave";
 import RamenData from "../composables/RamenData";
+import { getCurrentDate } from "../composables/GetCurrentDate";
 
-const emit = defineEmits<{
-  submit: [rawRamenInfo: RawRamenInfo];
-}>();
+const prop = withDefaults(
+  defineProps<{
+    ramenType?: RamenType | "";
+    size?: SizeType;
+    toppings?: ToppingType[];
+    eatsSoup?: boolean;
+    asksSeconds?: boolean;
+    secondsCount?: number;
+    date?: string;
+  }>(),
+  {
+    ramenType: "",
+    size: "m",
+    toppings: () => [],
+    eatsSoup: false,
+    asksSeconds: false,
+    secondsCount: 1,
+    date: getCurrentDate(),
+  }
+);
 
 const router = useRouter();
 const currentMode = ref<"create" | "history">("create");
 
-const selectedRamen = ref<RamenType | "">("");
-const selectedSize = ref<SizeType>("m");
-const selectedToppings = ref<ToppingType[]>([]);
+watch(currentMode, () => router.push("/selectRamen"));
+
+const selectedRamen = ref<RamenType | "">(prop.ramenType);
+const selectedSize = ref<SizeType>(prop.size);
+const selectedToppings = ref<ToppingType[]>(prop.toppings);
 const eatsSoup = ref(false);
 const asksSeconds = ref(false);
-const secondsCount = ref(1);
-const date = ref(getCurrentDate());
+const secondsCount = ref(prop.secondsCount);
+const date = ref(prop.date);
 
 function returnButtonHandler() {
   router.push("/");
-}
-
-// yyyy-MM-ddの形式で今日の日付を取得
-function getCurrentDate(): string {
-  const today = new Date();
-
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, "0");
-  const day = today.getDate().toString().padStart(2, "0");
-
-  return `${year}-${month}-${day}`;
 }
 
 // ラーメンを送信ボタンのイベントハンドラ

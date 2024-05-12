@@ -1,299 +1,110 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+import { computeCalorie } from "../composables/ComputeCalorie";
+import { computeLipid } from "../composables/ComputeLipid";
+import { computeSalt } from "../composables/ComputeSalt";
+import { fetchAndParseLocalRamens } from "../composables/FetchAndParseLocalRamens";
+import { searchRamen } from "../composables/SearchRamen";
+
+const ramens = fetchAndParseLocalRamens();
+
+const router = useRouter();
+
+function returnButtonHandler() {
+  router.push("/");
+}
 </script>
 
 <template>
-<div class="log">
-<h1>ラーメン履歴</h1>
-</div>
-<div class="page">
-
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
+  <div class="log">
+    <button @click="returnButtonHandler" class="relative rounded-full p-2 top-9 left-4 transition active:bg-black/10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 15 15">
+        <path
+          fill="white"
+          fill-rule="evenodd"
+          d="M6.854 3.146a.5.5 0 0 1 0 .708L3.707 7H12.5a.5.5 0 0 1 0 1H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+    <h1>ラーメン履歴</h1>
+  </div>
+  <div class="page">
+    <div class="mx-auto mt-20 text-center text-lg" :class="{ hidden: ramens.length != 0 }">
+      まだ何もないようです....
     </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
+    <div v-for="ramen in ramens" class="container-box">
+      <div class="ramen_name">
+        <p>{{ searchRamen(ramen).name }}</p>
+      </div>
+      <div class="inner-container">
+        <div class="calorie">
+          <p>カロリー<br />{{ computeCalorie(ramen) }} kcal</p>
         </div>
-        <div class="date">
-            <p>2024/05/10</p>
+        <div class="shishitsu">
+          <p>脂質<br />{{ computeLipid(ramen) }} g</p>
         </div>
+        <div class="toshitsu">
+          <p>塩分<br />{{ computeSalt(ramen) }} g</p>
+        </div>
+      </div>
+      <div class="date">
+        <p>2024/05/10</p>
+      </div>
     </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-<div class="container-box">
-    <div class="ramen_name">
-        <p>ラーメン</p>
-    </div>
-    <div class="inner-container">
-        <div class="inner-container2">
-            <div class="calorie">
-                <p>カロリー<br>100 kcal</p>
-            </div>
-            <div class="shishitsu">
-                <p>脂質<br>100 g</p>
-            </div>
-            <div class="toshitsu">
-                <p>糖質<br>100 g</p>
-            </div>
-        </div>
-        <div class="date">
-            <p>2024/05/10</p>
-        </div>
-    </div>
-</div>
-</div>
+  </div>
 </template>
 
 <style scoped>
-div{
-    color:#474A4D;
-}
-.log{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding-top:20px;
-    padding-bottom:20px;
-    background-color:#f16666;
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
-
+.log {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #f16666;
 }
 
-h1{
-    margin:0;
-    color:black;
-    text-align:center;
-
+h1 {
+  color: white;
+  text-align: center;
 }
 
 p {
-    margin: 5px;
+  margin: 5px;
 }
 .ramen_name {
-    text-align: left;
-    font-size: 25px;
-    margin: 0;
-    font-weight: bold;
+  text-align: left;
+  font-size: 25px;
+  margin: 0;
+  font-weight: bold;
 }
-
-.calorie {
-
-}
-
-.shishitsu{
-
-}
-
-.toshitsu{
-    
-}
-
 .date {
-    color:hsl(0, 0%, 56%);
-    padding-top:20px;
-    text-align: left;
+  color: hsl(0, 0%, 56%);
+  padding-top: 1rem;
+  text-align: left;
 }
 
 .inner-container {
-    height:100px;
-    color: rgb(76, 76, 76);
+  margin-top: 1rem;
+  color: rgb(76, 76, 76);
+  display: flex;
+  justify-content: space-around;
 }
 
-.inner-container2{
-    display:flex;
-    justify-content:left;
-    gap:50px;
-    padding-top:5px;
+.container-box {
+  background: #f4f4f4;
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 1rem 1rem;
+  border: solid 2px #eb3031;
 }
 
-.container-box{
-    background: #f4f4f4;
-    padding: 16px;
-    border-radius: 10px;
-    margin: 20px 15px 25px 15px;
-    border:solid 2px #eb3031;
-}
-
-.page{
-    overflow-y: scroll;
-    background: #EAE8E1;
-    padding-top:80px;
+.page {
+  overflow-y: scroll;
+  background: #eae8e1;
+  padding-top: 80px;
+  min-height: 100vh;
 }
 </style>

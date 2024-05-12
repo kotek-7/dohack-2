@@ -1,0 +1,136 @@
+import { RamenData } from "../types";
+
+export default [
+  {
+    name: "醤油",
+    value: "shoyu",
+    calorie: 459,
+    lipid: 8.9,
+    salt: 7.8,
+    noSoup: {
+      calorie: 385,
+      lipid: 3.7,
+      salt: 1.4,
+    },
+  },
+  {
+    name: "豚骨",
+    value: "tonkotsu",
+    calorie: 437,
+    lipid: 8.2,
+    salt: 6.1,
+    noSoup: {
+      calorie: 265,
+      lipid: 2.9,
+      salt: 1.3,
+    },
+  },
+  {
+    name: "塩",
+    value: "salt",
+    calorie: 420,
+    lipid: 7.1,
+    salt: 7.8,
+    noSoup: {
+      calorie: 364,
+      lipid: 2.9,
+      salt: 1,
+    },
+  },
+  {
+    name: "横浜",
+    value: "yokohama",
+    calorie: 743,
+    lipid: 22.3,
+    salt: 13.1,
+    noSoup: {
+      calorie: 614,
+      lipid: 14.1,
+      salt: 2.7,
+    },
+  },
+  {
+    name: "次郎系",
+    value: "jiro",
+    calorie: 1178,
+    lipid: 55.8,
+    salt: 10.9,
+    noSoup: {
+      calorie: 731,
+      lipid: 12.3,
+      salt: 3.5,
+    },
+  },
+  {
+    name: "油そば",
+    value: "aburasoba",
+    calorie: 506,
+    lipid: 12.8,
+    salt: 4.9,
+    noSoup: {
+      calorie: 506,
+      lipid: 12.8,
+      salt: 4.9,
+    },
+  },
+  {
+    name: "担々麺",
+    value: "tantanmen",
+    calorie: 592,
+    lipid: 12.8,
+    salt: 4.9,
+    noSoup: {
+      calorie: 462,
+      lipid: 10.6,
+      salt: 3.8,
+    },
+  },
+  {
+    name: "鶏白湯",
+    value: "toripaitan",
+    calorie: 434,
+    lipid: 8.1,
+    salt: 5.8,
+    noSoup: {
+      calorie: 362,
+      lipid: 2.8,
+      salt: 1,
+    },
+  },
+  {
+    name: "喜多方",
+    value: "kitakata",
+    calorie: 486,
+    lipid: 9.3,
+    salt: 7.9,
+    noSoup: {
+      calorie: 394,
+      lipid: 4.1,
+      salt: 1.5,
+    },
+  },
+  {
+    name: "博多",
+    value: "hakata",
+    calorie: 452,
+    lipid: 9.4,
+    salt: 7.1,
+    noSoup: {
+      calorie: 363,
+      lipid: 2.8,
+      salt: 1.1,
+    },
+  },
+  {
+    name: "札幌",
+    value: "sapporo",
+    calorie: 588,
+    lipid: 16.9,
+    salt: 9.4,
+    noSoup: {
+      calorie: 477,
+      lipid: 10.4,
+      salt: 0.9,
+    },
+  },
+] as RamenData[];

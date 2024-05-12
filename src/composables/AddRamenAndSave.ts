@@ -1,9 +1,9 @@
 import { RamenInfo } from "../types";
+import { fetchAndParseLocalRamens } from "./FetchAndParseLocalRamens";
 
 // RamenInfoを受け取って、localStorageの配列に追加する
 export function addRamenAndSave(ramenInfo: RamenInfo) {
-  const currentRamensString = localStorage.getItem("ramens") ?? "[]";
-  const currentRamens = JSON.parse(currentRamensString) as RamenInfo[];
+  const currentRamens = fetchAndParseLocalRamens();
 
   let ramensTemp: RamenInfo[];
 

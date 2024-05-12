@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { RawRamenInfo } from "../types";
 import { useRouter } from "vue-router";
-
-const kinraStreak = ref(4);
-const calorie = ref(24000);
-const fat = ref(320);
-const carb = ref(460);
+import { computeCalorieInMonth } from "../composables/ComputeCalorie";
+import { computeLipidInMonth } from "../composables/ComputeLipid";
+import { computeSaltInMonth } from "../composables/ComputeSalt";
+import { ramenCountInMonth } from "../composables/RamenCount";
 
 const router = useRouter();
+
+const calorieInMonth = computeCalorieInMonth();
+const lipidInMonth = computeLipidInMonth();
+const saltInMonth = computeSaltInMonth();
+const countInMonth = ramenCountInMonth();
 
 async function createNewHandler() {
   await router.push({ name: "newRamen" });
@@ -21,13 +23,13 @@ async function createNewHandler() {
     <div class="container">
       <div class="spacer" />
       <div class="susuranai">SUSURANAI</div>
-      <div class="analysis">今週の記録</div>
+      <div class="analysis">今月の記録</div>
       <div class="container-2">
         <div class="count-container">
           <div>
             <span class="">計</span>
             <div>
-              <span class="count">{{ kinraStreak }}</span
+              <span class="count">{{ countInMonth }}</span
               >回
             </div>
           </div>
@@ -35,15 +37,15 @@ async function createNewHandler() {
         <div class="params-container">
           <div class="param">
             <img src="../assets/icon_calorie.png" class="icon" />
-            <p>{{ calorie }} kcal</p>
+            <p>{{ calorieInMonth }} kcal</p>
           </div>
           <div class="param">
             <img src="../assets/icon_carb.png" class="icon" />
-            <p>{{ fat }} g</p>
+            <p>{{ lipidInMonth }} g</p>
           </div>
           <div class="param">
             <img src="../assets/icon_salt.png" class="icon" />
-            <p>{{ carb }} g</p>
+            <p>{{ saltInMonth }} g</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { RamenType, RawRamenInfo, SizeType, ToppingType } from "../types";
+import { RamenType, RawRamenInfo, SizeType, ToppingType, ramenTypeArray } from "../types";
 import {
   ListboxContent,
   ListboxItem,
@@ -9,19 +9,11 @@ import {
   PopoverPortal,
   PopoverRoot,
   PopoverTrigger,
-  SelectContent,
-  SelectItem,
-  SelectItemIndicator,
-  SelectItemText,
-  SelectPortal,
-  SelectRoot,
-  SelectTrigger,
-  SelectValue,
-  SelectViewport,
 } from "radix-vue";
 import { useRouter } from "vue-router";
 import { createRamenInfo } from "../composables/CreateRamenInfo";
 import { addRamenAndSave } from "../composables/AddRamenAndSave";
+import RamenData from "../composables/RamenData";
 
 const emit = defineEmits<{
   submit: [rawRamenInfo: RawRamenInfo];
@@ -31,7 +23,7 @@ const router = useRouter();
 const currentMode = ref<"create" | "history">("create");
 
 const selectedRamen = ref<RamenType | "">("");
-const selectedSize = ref<SizeType>("並");
+const selectedSize = ref<SizeType>("m");
 const selectedToppings = ref<ToppingType[]>([]);
 const eatsSoup = ref(false);
 const asksSeconds = ref(false);
@@ -118,10 +110,9 @@ function submitButtonHandler() {
               class="*:text-[#474A4D] bg-transparent border-none appearance-none text-center text-xl *:text-sm"
             >
               <option disabled value="">選択...</option>
-              <option>二郎系</option>
-              <option>家系</option>
-              <option>油そば</option>
-              <option>醤油</option>
+              <option v-for="(ramenType, i) in ramenTypeArray" :value="ramenType" :key="ramenType">
+                {{ RamenData[i].name }}
+              </option>
             </select>
           </div>
           <div
@@ -134,10 +125,10 @@ function submitButtonHandler() {
               v-model="selectedSize"
               class="*:text-[#474A4D] bg-transparent border-none appearance-none text-center text-xl *:text-sm"
             >
-              <option>特大</option>
-              <option>大</option>
-              <option>並</option>
-              <option>小</option>
+              <option value="xl">特大</option>
+              <option value="l">大</option>
+              <option value="m">並</option>
+              <option value="s">小</option>
             </select>
           </div>
           <div
@@ -184,8 +175,7 @@ function submitButtonHandler() {
             >
               トッピング
               <div class="text-sm mt-2" :class="{ hidden: selectedToppings.length == 0 }">
-                <div :class="{ hidden: selectedToppings[0] == null }">{{ selectedToppings[0] }}</div>
-                <div :class="{ hidden: selectedToppings[1] == null }">{{ selectedToppings[1] }}</div>
+                <div v-for="topping in selectedToppings">{{ topping }}</div>
               </div>
             </PopoverTrigger>
             <PopoverPortal>
@@ -193,21 +183,21 @@ function submitButtonHandler() {
                 <ListboxRoot v-model="selectedToppings" multiple>
                   <ListboxContent class="*:transition *:filter active:*:brightness-90 *:px-3 *:py-0.5 *:rounded">
                     <ListboxItem
-                      value="チャーシュー"
+                      value="char-siu"
                       class="font-kiwi"
                       :class="{
-                        'bg-[#eb3031] text-white': selectedToppings.includes('チャーシュー'),
-                        'bg-white': !selectedToppings.includes('チャーシュー'),
+                        'bg-[#eb3031] text-white': selectedToppings.includes('char-siu'),
+                        'bg-white': !selectedToppings.includes('char-siu'),
                       }"
                     >
                       チャーシュー
                     </ListboxItem>
                     <ListboxItem
-                      value="卵"
+                      value="egg"
                       class="font-kiwi"
                       :class="{
-                        'bg-[#eb3031] text-white': selectedToppings.includes('卵'),
-                        'bg-white': !selectedToppings.includes('卵'),
+                        'bg-[#eb3031] text-white': selectedToppings.includes('egg'),
+                        'bg-white': !selectedToppings.includes('egg'),
                       }"
                     >
                       タマゴ

@@ -236,6 +236,7 @@ function submitButtonHandler() {
       >
         送信！！！
       </button>
+      <div class="h-64"></div>
     </div>
     <div>
       <img

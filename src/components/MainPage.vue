@@ -72,7 +72,7 @@ function historyHandler() {
           />
         </svg>
       </button>
-      <div class="spacer" />
+      <div class="h-64" />
     </div>
     <div class="bottom-images">
       <img class="logo" src="../assets/logo.png" />

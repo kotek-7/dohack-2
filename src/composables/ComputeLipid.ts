@@ -1,5 +1,4 @@
 import { deserializeDate } from "./DeserializeDate";
-import RamenData from "./RamenData";
 import { fetchAndParseLocalRamens } from "./FetchAndParseLocalRamens";
 import { RamenInfo } from "../types";
 import { searchRamen } from "./SearchRamen";

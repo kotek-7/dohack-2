@@ -4,6 +4,8 @@ import { computeCalorieInMonth } from "../composables/ComputeCalorie";
 import { computeLipidInMonth } from "../composables/ComputeLipid";
 import { computeSaltInMonth } from "../composables/ComputeSalt";
 import { ramenCountInMonth } from "../composables/RamenCount";
+import { Calendar } from "v-calendar";
+import "v-calendar/style.css";
 
 const router = useRouter();
 
@@ -53,7 +55,9 @@ function historyHandler() {
           </div>
         </div>
       </div>
-      <div class="calendar">Calendar</div>
+      <div class="calendar">
+        <Calendar />
+      </div>
       <button class="create-button" @click="createNewHandler">記録する</button>
       <button
         class="w-12 h-12 rounded-full absolute bottom-12 right-4 bg-white p-2 flex justify-center items-center active:bg-[#eb3031] active:text-white transition"
@@ -141,9 +145,6 @@ p {
   margin-right: 1rem;
 }
 .calendar {
-  width: 70vw;
-  height: 10rem;
-  background-color: white;
   margin: 0 auto;
   margin-top: 2rem;
 }

@@ -1,6 +1,19 @@
-export type RamenType = "二郎系" | "家系" | "油そば" | "醤油ラーメン";
-export type SizeType = "特大" | "大" | "並" | "小";
-export type ToppingType = "卵" | "チャーシュー";
+export const ramenTypeArray = [
+  "shoyu",
+  "tonkotsu",
+  "salt",
+  "yokohama",
+  "jiro",
+  "aburasoba",
+  "tantanmen",
+  "toripaitan",
+  "kitakata",
+  "hakata",
+  "sapporo",
+] as const;
+export type RamenType = (typeof ramenTypeArray)[number];
+export type SizeType = "xl" | "l" | "m" | "s";
+export type ToppingType = "egg" | "char-siu";
 export type RawRamenInfo = {
   ramenType: RamenType | "";
   size: SizeType;
@@ -17,4 +30,16 @@ export type RamenInfo = {
   eatsSoup: boolean;
   secondsCount: number;
   date: string;
+};
+export type RamenData = {
+  name: string;
+  value: RamenType;
+  calorie: number;
+  lipid: number;
+  salt: number;
+  noSoup: {
+    calorie: number;
+    lipid: number;
+    salt: number;
+  };
 };

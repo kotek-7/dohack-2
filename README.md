@@ -1,3 +1,9 @@
+# SUSURANAI
+ラーメンを食べた日を記録し、節度あるラーメン生活を送るためのアプリです！！  
+食べたラーメンの総カロリーなども計算することができます！
+
+[recording.webm](https://github.com/user-attachments/assets/837c3b87-a5d1-4b09-9efd-06939431593d)
+
 Dohack team2 のリポジトリ  
 頑張りましょう！！！！！！！！！！！！！！！
 
